@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Umme Laiba Raha | Urban & Environmental Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #2a1f1f; --paper: #fdf8f6; --accent: #a05c6a; --accent2: #c49a6c;
+    --muted: #7a6a6a; --border: #e8d8d4; --card: #ffffff; --highlight: #f8eef0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2.5rem; background: var(--paper); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 64px; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 3rem 5rem 4rem; border-right: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { display: none; }
+  .hero-name { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-tagline { font-size: 1rem; color: var(--muted); max-width: 400px; margin-bottom: 1.75rem; line-height: 1.85; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .badge { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.28rem 0.7rem; border-radius: 2px; border: 1px solid var(--border); color: var(--muted); background: var(--card); }
+  .badge.green { border-color: var(--accent); color: var(--accent); background: var(--highlight); }
+  .badge.amber { border-color: var(--accent2); color: var(--accent2); background: #fdf4ec; }
+  .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; text-decoration: none; padding: 0.75rem 1.5rem; font-size: 0.82rem; font-weight: 500; border-radius: 2px; transition: background 0.2s; }
+  .hero-cta:hover { background: #7a3f4d; }
+  .hero-cta.outline { background: transparent; border: 1.5px solid var(--accent); color: var(--accent); }
+  .hero-cta.outline:hover { background: var(--highlight); }
+  .hero-right { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem; position: relative; overflow: hidden; background: var(--highlight); }
+  .hero-map-bg { position: absolute; inset: 0; opacity: 0.06; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 40px 40px; }
+  .hero-photo-wrap { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; width: 100%; }
+  .hero-photo { width: 240px; height: 300px; object-fit: cover; object-position: top center; border-radius: 4px; border: 4px solid var(--card); box-shadow: 0 8px 32px rgba(160,92,106,0.18); }
+  .hero-photo-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; width: 100%; max-width: 320px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.1rem; }
+  .stat-number { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: var(--ink); line-height: 1; margin-bottom: 0.25rem; }
+  .stat-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
+  .stat-sub { font-size: 0.62rem; color: var(--muted); opacity: 0.7; margin-top: 0.15rem; }
+  .stat-card.green { background: var(--accent); border-color: var(--accent); }
+  .stat-card.green .stat-number, .stat-card.green .stat-label, .stat-card.green .stat-sub { color: #fff; }
+  .stat-card.amber { background: var(--accent2); border-color: var(--accent2); }
+  .stat-card.amber .stat-number, .stat-card.amber .stat-label, .stat-card.amber .stat-sub { color: #fff; }
+
+  /* HIGHLIGHTS */
+  #highlights { background: var(--ink); padding: 5.5rem 4rem; border-top: 1px solid var(--border); }
+  #highlights .section-label { color: var(--accent2); }
+  #highlights .section-title { color: var(--paper); margin-bottom: 2rem; }
+  .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+  .hl-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; transition: border-color 0.2s, background 0.2s; }
+  .hl-card:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
+  .hl-card.featured { border-color: var(--accent2); }
+  .hl-source { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); display: flex; align-items: center; gap: 0.4rem; }
+  .hl-source::before { content: '★'; font-size: 0.6rem; }
+  .hl-title { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--paper); line-height: 1.3; }
+  .hl-desc { font-size: 0.83rem; color: rgba(245,242,235,0.58); line-height: 1.65; flex: 1; }
+  .hl-meta { font-size: 0.7rem; color: rgba(245,242,235,0.32); border-top: 1px solid rgba(255,255,255,0.07); padding-top: 0.75rem; margin-top: 0.25rem; }
+  .hl-link { font-size: 0.72rem; color: var(--accent2); text-decoration: none; }
+  .hl-link:hover { text-decoration: underline; }
+
+  section { padding: 5.5rem 4rem; }
+  .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; color: var(--ink); margin-bottom: 2.5rem; }
+
+  /* ABOUT */
+  #about { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start; border-top: 1px solid var(--border); }
+  .about-text p { font-size: 1rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.85; }
+  .edu-block { margin-top: 1.5rem; }
+  .edu-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .edu-item:first-child { border-top: 1px solid var(--border); }
+  .edu-degree { font-weight: 500; font-size: 0.92rem; color: var(--ink); }
+  .edu-school { font-size: 0.85rem; color: var(--accent); }
+  .edu-meta { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
+  .sidebar-section { margin-bottom: 2rem; }
+  .sidebar-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .skills-list { list-style: none; }
+  .skills-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--ink); display: flex; align-items: center; gap: 0.6rem; }
+  .skills-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .affil-list { list-style: none; }
+  .affil-list li { font-size: 0.82rem; color: var(--muted); padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
+
+  /* GIS */
+  #gis { background: var(--ink); padding: 5.5rem 4rem; border-top: 1px solid var(--border); }
+  #gis .section-label { color: var(--accent2); }
+  #gis .section-title { color: var(--paper); }
+  .gis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.25rem; }
+  .gis-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; transition: border-color 0.2s; }
+  .gis-card:hover { border-color: rgba(255,255,255,0.28); }
+  .gis-preview { height: 150px; background: #111; position: relative; overflow: hidden; }
+  .gis-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 22px 22px; }
+  .gis-body { padding: 1rem 1.25rem; background: #1e1e1c; }
+  .gis-tag { display: inline-block; font-size: 0.64rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent2); padding: 0.15rem 0.5rem; border-radius: 2px; margin-bottom: 0.5rem; }
+  .gis-title { font-weight: 500; font-size: 0.9rem; color: var(--paper); margin-bottom: 0.2rem; line-height: 1.3; }
+  .gis-sub { font-size: 0.75rem; color: rgba(245,242,235,0.42); }
+
+  /* PROJECTS */
+  #projects { border-top: 1px solid var(--border); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem; }
+  .project-card { border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; background: var(--card); transition: border-color 0.2s; }
+  .project-card:hover { border-color: #aaa; }
+  .proj-tag { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.2rem 0.55rem; border-radius: 2px; width: fit-content; }
+  .proj-title { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--ink); line-height: 1.2; }
+  .proj-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.7; flex: 1; }
+  .proj-meta { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 0.75rem; opacity: 0.7; }
+
+  /* PUBLICATIONS */
+  #publications { border-top: 1px solid var(--border); }
+  .scholar-bar { background: var(--highlight); border: 1px solid #b5d4b8; border-radius: 4px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .sch-metric { text-align: center; }
+  .sch-num { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--accent); line-height: 1; }
+  .sch-lbl { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+  .sch-div { width: 1px; height: 40px; background: var(--border); }
+  .sch-link { font-size: 0.8rem; color: var(--accent); text-decoration: none; margin-left: auto; }
+  .sch-link:hover { text-decoration: underline; }
+  .pub-group { margin-bottom: 2.5rem; }
+  .pub-group-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .pub-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .pub-type-badge { display: inline-block; font-size: 0.64rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.12rem 0.45rem; border-radius: 2px; margin-right: 0.4rem; vertical-align: middle; }
+  .pub-title { font-weight: 500; font-size: 0.92rem; color: var(--ink); line-height: 1.4; margin-bottom: 0.25rem; }
+  .pub-authors { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.2rem; }
+  .pub-venue { font-size: 0.8rem; color: var(--accent2); font-style: italic; }
+
+  /* HONORS */
+  #honors { border-top: 1px solid var(--border); background: var(--highlight); }
+  .honors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+  .honor-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; }
+  .honor-year { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.4rem; }
+  .honor-title { font-weight: 500; font-size: 0.88rem; color: var(--ink); line-height: 1.35; margin-bottom: 0.3rem; }
+  .honor-org { font-size: 0.78rem; color: var(--muted); }
+
+  /* CONTACT */
+  #contact { border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .contact-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); line-height: 1.1; margin-bottom: 1rem; }
+  .contact-sub { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+  .resume-btn { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid var(--accent); color: var(--accent); padding: 0.7rem 1.4rem; font-size: 0.82rem; font-weight: 500; border-radius: 2px; text-decoration: none; transition: background 0.2s, color 0.2s; width: fit-content; }
+  .resume-btn:hover { background: var(--accent); color: #fff; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.25rem; border: 1px solid var(--border); border-radius: 4px; text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 500; transition: border-color 0.2s, background 0.2s; }
+  .contact-link:hover { border-color: var(--accent); background: var(--highlight); }
+  .contact-icon { width: 34px; height: 34px; border-radius: 50%; background: var(--paper); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; flex-shrink: 0; font-weight: 500; }
+
+  footer { border-top: 1px solid var(--border); padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow { animation: fadeUp 0.5s ease both; }
+  .hero-name { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-tagline { animation: fadeUp 0.5s 0.18s ease both; }
+  .hero-badges { animation: fadeUp 0.5s 0.24s ease both; }
+  .hero-ctas { animation: fadeUp 0.5s 0.3s ease both; }
+  .hero-photo-wrap { animation: fadeUp 0.6s 0.4s ease both; }
+
+  @media (max-width: 820px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-right { padding: 2rem 1.5rem; }
+    section, #highlights, #gis, #honors { padding: 4rem 1.5rem; }
+    #about { grid-template-columns: 1fr; gap: 2rem; }
+    #contact { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+    .scholar-bar { gap: 1rem; }
+    .sch-link { margin-left: 0; }
+  }
+
+  /* GRANTS */
+  #grants { border-top: 1px solid var(--border); background: var(--highlight); }
+  .grants-intro { font-size: 1rem; color: var(--muted); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.85; }
+  .grants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+  .grant-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s; }
+  .grant-card:hover { border-color: var(--accent); }
+  .grant-role { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 0.2rem 0.55rem; border-radius: 2px; width: fit-content; }
+  .grant-title { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--ink); line-height: 1.25; }
+  .grant-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.7; flex: 1; }
+  .grant-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 0.75rem; }
+  .grant-status { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2px; }
+  .grant-status.pending { background: #fdf4ec; color: var(--accent2); border: 1px solid var(--accent2); }
+  .grant-status.active { background: var(--highlight); color: var(--accent); border: 1px solid var(--accent); }
+  .writing-skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .writing-skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; }
+  .writing-skill-title { font-weight: 500; font-size: 0.88rem; color: var(--ink); margin-bottom: 0.3rem; }
+  .writing-skill-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Umme Laiba Raha</a>
+  <ul class="nav-links">
+    <li><a href="#highlights">News</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#gis">GIS</a></li>
+    <li><a href="#projects">Experience</a></li>
+    <li><a href="#grants">Grants</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#honors">Honors</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Urban &amp; Environmental Planner · Tempe, AZ</div>
+    <h1 class="hero-name">Umme Laiba<br><em>Raha</em></h1>
+    <p class="hero-tagline">MUEP Candidate at Arizona State University · GIS specialist · researcher working at the intersection of housing equity, climate resilience, and community development.</p>
+    <div class="hero-badges">
+      <span class="badge green">APA Member</span>
+      <span class="badge green">AGU Member</span>
+      <span class="badge amber">Swanton Scholar 2025</span>
+      <span class="badge">GPA 3.95</span>
+      <span class="badge">ArcGIS Pro</span>
+      <span class="badge">Python · R</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#projects" class="hero-cta">View My Work →</a>
+      <a href="Raha_UmmeLaiba_Resume_2026.pdf" class="hero-cta outline" target="_blank">↓ Resume</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-map-bg"></div>
+    <div class="hero-photo-wrap">
+      <img src="Raha_photo.jpg" alt="Umme Laiba Raha" class="hero-photo"/>
+      <div class="hero-photo-stats">
+        <div class="stat-card green">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Google Scholar citations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">9</div>
+          <div class="stat-label">Publications &amp; presentations</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-number">3.95</div>
+          <div class="stat-label">GPA · ASU MUEP</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">300+</div>
+          <div class="stat-label">Students supported</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<div id="highlights">
+  <div class="section-label">In the News</div>
+  <h2 class="section-title">Highlights &amp; recognition</h2>
+  <div class="highlights-grid">
+
+    <div class="hl-card featured">
+      <div class="hl-source">ASU News</div>
+      <div class="hl-title">Brian &amp; Leah Swanton Urban Planning Scholarship Recipient</div>
+      <div class="hl-desc">Named at ASU's 34th Annual SGSUP Awards Ceremony — awarded for positively impacting distressed communities through housing and planning research.</div>
+      <div class="hl-meta">April 24, 2025 · School of Geographical Sciences &amp; Urban Planning</div>
+      <a class="hl-link" href="https://news.asu.edu/b/20250424-school-geographical-sciences-and-urban-planning-celebrates-excellence-34th-annual-awards" target="_blank">Read on ASU News →</a>
+    </div>
+
+    <div class="hl-card">
+      <div class="hl-source">ASU SGSUP · Student Spotlight</div>
+      <div class="hl-title">Featured as MUEP Graduate Student of Note</div>
+      <div class="hl-desc">Spotlighted by ASU's School of Geographical Sciences and Urban Planning for GIS expertise, field research at Central Arizona Project, and dedication to equitable urban planning.</div>
+      <div class="hl-meta">2025 · ASU SGSUP Communications</div>
+    </div>
+
+    <div class="hl-card">
+      <div class="hl-source">ASU Urban Climate Research Center</div>
+      <div class="hl-title">Poster Presenter — Tree Planting Suitability in Tempe, AZ</div>
+      <div class="hl-desc">Co-presented GIS-based research on urban heat equity and tree canopy suitability at ASU UCRC 2026, identifying priority planting zones for socially vulnerable neighborhoods in Tempe.</div>
+      <div class="hl-meta">2026 · Local Resources for Urban Climate Research &amp; Education at ASU</div>
+    </div>
+
+    <div class="hl-card">
+      <div class="hl-source">APA National Planning Conference</div>
+      <div class="hl-title">Volunteer &amp; Attendee — NPC25, Denver</div>
+      <div class="hl-desc">Attended and volunteered at the American Planning Association's National Planning Conference 2025 in Denver — explored sessions on housing, ADUs, and equity-driven planning policy.</div>
+      <div class="hl-meta">April 2025 · Denver, Colorado</div>
+    </div>
+
+    <div class="hl-card">
+      <div class="hl-source">United Nations Academic Impact</div>
+      <div class="hl-title">Millennium Fellowship Recipient</div>
+      <div class="hl-desc">Initiated and led "E-cycle from Home," a sustainability project addressing SDGs 11 and 3, leading a four-person interdisciplinary team recognized by the UN Academic Impact and MCN.</div>
+      <div class="hl-meta">December 2022</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Planner. Researcher.<br>Spatial analyst.</h2>
+    <p>I'm Umme Laiba Raha, a Master of Urban and Environmental Planning (MUEP) candidate at Arizona State University (expected May 2026, GPA 3.95). My work sits at the intersection of housing equity, urban heat resilience, GIS, and community development.</p>
+    <p>At ASU I serve as both a Graduate Teaching Assistant — supporting 300+ students across GIS 211/311, Planning Methods, Sustainable Cities, and Global Change — and a Graduate Service Assistant for CEE 281 Surveying, teaching field measurement techniques with total stations and auto levels.</p>
+    <p>Currently I work as a Planning, Community and Economic Development Associate at aLocal.ai, applying LLMs and spatial data analysis to equitable economic planning. My most formative applied experience was a GIS internship at the Central Arizona Project — Arizona's single largest renewable water supply system — maintaining the enterprise geodatabase and conducting field data collection along the canal.</p>
+    <p>I am originally from Bangladesh, where I earned my B.Sc. in Geography and Environmental Studies from the University of Chittagong (top 1%, GPA 3.83), and where my interest in e-waste, flood resilience, and environmental justice first took root.</p>
+    <div class="edu-block">
+      <div class="edu-item">
+        <div class="edu-degree">Master of Urban and Environmental Planning (MUEP)</div>
+        <div class="edu-school">Arizona State University · Tempe, AZ</div>
+        <div class="edu-meta">2024–Present · GPA: 3.95 · Expected May 2026</div>
+        <div class="edu-meta" style="margin-top:0.2rem;font-size:0.75rem;">APA AZ Mentorship Program Mentee · Student Planning Association Member</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">B.Sc. (Hons) in Geography and Environmental Studies</div>
+        <div class="edu-school">University of Chittagong · Bangladesh</div>
+        <div class="edu-meta">2019–2023 · GPA: 3.83 · Top 1% of graduating class</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sidebar-section">
+      <p class="sidebar-title">GIS &amp; Remote Sensing</p>
+      <ul class="skills-list">
+        <li>ArcGIS Pro 3.6</li>
+        <li>ArcGIS Field Maps &amp; Survey123</li>
+        <li>Google Earth Engine</li>
+        <li>QGIS · FME</li>
+        <li>Esri Business Analyst</li>
+        <li>ArcGIS Online &amp; Enterprise (SDE)</li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <p class="sidebar-title">Analysis &amp; Programming</p>
+      <ul class="skills-list">
+        <li>Python 3 · R</li>
+        <li>SPSS 25 · Excel · Power BI</li>
+        <li>Azure DevOps</li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <p class="sidebar-title">Design &amp; Visualization</p>
+      <ul class="skills-list">
+        <li>Adobe Illustrator</li>
+        <li>AutoCAD</li>
+        <li>ArcGIS StoryMaps</li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <p class="sidebar-title">Affiliations</p>
+      <ul class="affil-list">
+        <li>APA Arizona Chapter — Student Member</li>
+        <li>American Geophysical Union (AGU)</li>
+        <li>ORURISA (OR &amp; SW WA URISA Chapter)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GIS WORK -->
+<div id="gis">
+  <div class="section-label">Spatial Analysis</div>
+  <h2 class="section-title">GIS &amp; mapping work</h2>
+  <div class="gis-grid">
+
+    <div class="gis-card">
+      <div class="gis-preview">
+        <div class="gis-grid-bg"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 300 150">
+          <circle cx="90" cy="55" r="20" fill="rgba(196,135,58,0.75)"/>
+          <circle cx="165" cy="88" r="13" fill="rgba(196,135,58,0.55)"/>
+          <circle cx="210" cy="50" r="9" fill="rgba(196,135,58,0.45)"/>
+          <circle cx="125" cy="118" r="15" fill="rgba(196,135,58,0.65)"/>
+          <circle cx="240" cy="110" r="7" fill="rgba(196,135,58,0.38)"/>
+          <circle cx="55" cy="105" r="6" fill="rgba(196,135,58,0.4)"/>
+        </svg>
+      </div>
+      <div class="gis-body">
+        <div class="gis-tag">Tree Canopy · Heat Equity</div>
+        <div class="gis-title">Tree Planting Suitability — Tempe, AZ</div>
+        <div class="gis-sub">ArcGIS Pro · Landsat 9 · SVI · UCRC 2026</div>
+      </div>
+    </div>
+
+    <div class="gis-card">
+      <div class="gis-preview">
+        <div class="gis-grid-bg"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 300 150">
+          <polyline points="30,120 80,55 140,95 200,40 265,68" fill="none" stroke="rgba(45,90,61,0.7)" stroke-width="2.5"/>
+          <polyline points="30,120 80,55 140,95 200,40 265,68" fill="none" stroke="rgba(196,135,58,0.35)" stroke-width="6" stroke-dasharray="3 9"/>
+          <circle cx="80" cy="55" r="5" fill="rgba(196,135,58,0.9)"/>
+          <circle cx="200" cy="40" r="5" fill="rgba(196,135,58,0.9)"/>
+          <circle cx="30" cy="120" r="4" fill="rgba(45,90,61,0.7)"/>
+        </svg>
+      </div>
+      <div class="gis-body">
+        <div class="gis-tag">Urban Expansion · Flood Risk</div>
+        <div class="gis-title">Urban Expansion in Phoenix (2013–2019)</div>
+        <div class="gis-sub">ArcGIS StoryMap · GIS Workshop for Planners · Spring 2025</div>
+      </div>
+    </div>
+
+    <div class="gis-card">
+      <div class="gis-preview">
+        <div class="gis-grid-bg"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 300 150">
+          <rect x="28" y="22" width="52" height="40" rx="2" fill="rgba(196,135,58,0.22)" stroke="rgba(196,135,58,0.5)" stroke-width="1"/>
+          <rect x="98" y="38" width="72" height="52" rx="2" fill="rgba(196,135,58,0.42)" stroke="rgba(196,135,58,0.68)" stroke-width="1"/>
+          <rect x="32" y="88" width="42" height="42" rx="2" fill="rgba(196,135,58,0.58)" stroke="rgba(196,135,58,0.82)" stroke-width="1"/>
+          <rect x="185" y="28" width="48" height="32" rx="2" fill="rgba(196,135,58,0.18)" stroke="rgba(196,135,58,0.42)" stroke-width="1"/>
+          <rect x="188" y="88" width="72" height="50" rx="2" fill="rgba(196,135,58,0.32)" stroke="rgba(196,135,58,0.58)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="gis-body">
+        <div class="gis-tag">Healthcare Access · Equity</div>
+        <div class="gis-title">Medical Facilities in Low-Income Areas — Arizona</div>
+        <div class="gis-sub">ArcGIS Pro · Spatial overlay analysis</div>
+      </div>
+    </div>
+
+    <div class="gis-card">
+      <div class="gis-preview">
+        <div class="gis-grid-bg"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 300 150">
+          <polygon points="55,28 158,22 238,62 208,138 88,142 38,98" fill="rgba(45,90,61,0.18)" stroke="rgba(45,90,61,0.55)" stroke-width="1.5"/>
+          <polygon points="88,48 153,46 198,78 178,122 100,126 63,92" fill="rgba(45,90,61,0.3)" stroke="rgba(45,90,61,0.7)" stroke-width="1"/>
+          <polygon points="112,68 150,67 170,96 156,112 116,114 98,95" fill="rgba(45,90,61,0.5)" stroke="rgba(45,90,61,0.88)" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="gis-body">
+        <div class="gis-tag">Housing · Demographics</div>
+        <div class="gis-title">Housing Vacancy Rates &amp; Megacities — Oregon</div>
+        <div class="gis-sub">QGIS · Choropleth mapping · Vector analysis</div>
+      </div>
+    </div>
+
+    <div class="gis-card">
+      <div class="gis-preview">
+        <div class="gis-grid-bg"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 300 150">
+          <circle cx="55" cy="118" r="8" fill="rgba(45,90,61,0.85)"/>
+          <circle cx="245" cy="35" r="8" fill="rgba(196,135,58,0.85)"/>
+          <polyline points="55,118 92,82 138,98 178,58 245,35" fill="none" stroke="rgba(45,90,61,0.75)" stroke-width="2.5"/>
+          <polyline points="55,118 78,65 132,48 245,35" fill="none" stroke="rgba(196,135,58,0.5)" stroke-width="1.5" stroke-dasharray="5 4"/>
+        </svg>
+      </div>
+      <div class="gis-body">
+        <div class="gis-tag">Network Analysis</div>
+        <div class="gis-title">Shortest Path &amp; Most Bikable Route</div>
+        <div class="gis-sub">ArcGIS Network Analyst · Routing &amp; accessibility</div>
+      </div>
+    </div>
+
+    <div class="gis-card">
+      <div class="gis-preview">
+        <div class="gis-grid-bg"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 300 150">
+          <rect x="35" y="30" width="55" height="42" rx="2" fill="rgba(45,90,61,0.52)"/>
+          <rect x="108" y="46" width="78" height="58" rx="2" fill="rgba(45,90,61,0.32)"/>
+          <rect x="205" y="34" width="52" height="38" rx="2" fill="rgba(45,90,61,0.62)"/>
+          <rect x="40" y="96" width="50" height="36" rx="2" fill="rgba(45,90,61,0.42)"/>
+          <rect x="210" y="96" width="48" height="36" rx="2" fill="rgba(45,90,61,0.28)"/>
+        </svg>
+      </div>
+      <div class="gis-body">
+        <div class="gis-tag">Site Suitability</div>
+        <div class="gis-title">Site Suitability &amp; Land Use Analysis</div>
+        <div class="gis-sub">ArcGIS · QGIS · Weighted overlay</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GRANTS & WRITING -->
+<section id="grants">
+  <div class="section-label">Grant Writing</div>
+  <h2 class="section-title">Grants &amp; proposal writing</h2>
+  <p class="grants-intro">I bring applied grant writing experience developed through my work at aLocal.ai, where I support communities and tribal nations in accessing federal and state funding for planning and infrastructure projects.</p>
+
+  <div class="grants-grid">
+
+    <div class="grant-card">
+      <span class="grant-role">Lead Writer</span>
+      <h3 class="grant-title">ADOT Transportation Alternatives (TA) Grant</h3>
+      <p class="grant-desc">Led the preparation and writing of a Transportation Alternatives grant application through the Arizona Department of Transportation (ADOT) on behalf of aLocal.ai. The proposal supports community-centered transportation planning and infrastructure improvements.</p>
+      <div class="grant-meta">
+        <span>Funder: ADOT · aLocal.ai</span>
+        <span class="grant-status pending">Decision Pending</span>
+      </div>
+    </div>
+
+    <div class="grant-card">
+      <span class="grant-role">Lead Writer</span>
+      <h3 class="grant-title">Tonto Apache Tribe — Community Planning Grant</h3>
+      <p class="grant-desc">Served as lead grant writer at aLocal.ai for a grant proposal supporting the Tonto Apache Tribe. Applied knowledge of tribal community development, data equity, and federal funding frameworks to craft a compelling and culturally informed proposal.</p>
+      <div class="grant-meta">
+        <span>Tonto Apache Tribe · aLocal.ai</span>
+        <span class="grant-status active">Submitted</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label" style="margin-bottom:1rem;">Writing skills</div>
+  <div class="writing-skills">
+    <div class="writing-skill-card">
+      <div class="writing-skill-title">Grant Proposal Writing</div>
+      <div class="writing-skill-desc">Federal and state funding applications, needs assessments, and project narratives for planning and community development.</div>
+    </div>
+    <div class="writing-skill-card">
+      <div class="writing-skill-title">Policy &amp; Planning Reports</div>
+      <div class="writing-skill-desc">Technical reports, zoning analyses, and planning document drafting for municipal and research contexts.</div>
+    </div>
+    <div class="writing-skill-card">
+      <div class="writing-skill-title">Research &amp; Academic Writing</div>
+      <div class="writing-skill-desc">Peer-reviewed conference papers, systematic literature reviews, and research design for geography and planning topics.</div>
+    </div>
+    <div class="writing-skill-card">
+      <div class="writing-skill-title">Community Engagement Materials</div>
+      <div class="writing-skill-desc">Visual reports, proposals, and outreach materials for community and economic development initiatives.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="projects">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Work &amp; research</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <span class="proj-tag">Planning &amp; GIS</span>
+      <h3 class="proj-title">Planning, Community &amp; Economic Development Associate</h3>
+      <p class="proj-desc">aLocal.ai, Tempe AZ. GIS mapping and data analysis integrating NAICS-coded industry data with demographic and spending indicators. Applies LLMs to synthesize economic data using in-house AI software. Prepares reports and visuals for community development initiatives.</p>
+      <div class="proj-meta"><span>aLocal.ai</span><span>Sept 2024–Present</span></div>
+    </div>
+
+    <div class="project-card">
+      <span class="proj-tag">GIS Internship</span>
+      <h3 class="proj-title">GIS Intern — Central Arizona Project</h3>
+      <p class="proj-desc">Supported Arizona's largest renewable water supply system within CAP's Analytics &amp; Information Management team. Maintained enterprise geodatabase (SDE); published authoritative layers to ArcGIS Enterprise and Online. Used Azure DevOps for GIS work items; conducted UAT across Dev/Test/Prod environments. Earned A+ academic credit.</p>
+      <div class="proj-meta"><span>Central Arizona Project · Phoenix, AZ</span><span>May–Aug 2025</span></div>
+    </div>
+
+    <div class="project-card">
+      <span class="proj-tag">Research</span>
+      <h3 class="proj-title">Research Assistant — ARCHES</h3>
+      <p class="proj-desc">Arizona Research Center for Housing and Economic Solutions (advisor: Dr. Deirdre Pfeiffer). Project: Adaptation of Garages and Driveways in Phoenix — analyzed zoning codes, subdivision laws, and planning documents; produced GIS maps from primary and secondary datasets.</p>
+      <div class="proj-meta"><span>ASU ARCHES · Tempe, AZ</span><span>Jan–May 2025</span></div>
+    </div>
+
+    <div class="project-card">
+      <span class="proj-tag">Teaching</span>
+      <h3 class="proj-title">Graduate Teaching &amp; Service Assistant</h3>
+      <p class="proj-desc">Supported GIS 211 &amp; 311, Planning Methods, Sustainable Cities, and Global Change courses across multiple semesters — assisting 300+ students. As GSA, taught surveying field techniques for CEE 281 using total stations, auto levels, and GPS instruments.</p>
+      <div class="proj-meta"><span>Arizona State University</span><span>Aug 2024–Present</span></div>
+    </div>
+
+    <div class="project-card">
+      <span class="proj-tag">Research · Bangladesh</span>
+      <h3 class="proj-title">Research Assistant — Dr. Alak Paul Lab</h3>
+      <p class="proj-desc">Long-term research collaboration under Dr. Alak Paul, University of Chittagong. Co-authored peer-reviewed and conference publications on e-waste management, electricity consumption and environmental behavior, and occupational health hazards among recyclers.</p>
+      <div class="proj-meta"><span>University of Chittagong</span><span>Jan 2022–Dec 2024</span></div>
+    </div>
+
+    <div class="project-card">
+      <span class="proj-tag">Field Research</span>
+      <h3 class="proj-title">Data Enumerator — Three Field Projects</h3>
+      <p class="proj-desc">Collected primary field data for: ecosystem conservation institutional challenges at BFRI (2022); university student mental health during COVID-19 via online survey (2021); catalogue of drought events in Bangladesh under Dr. Edris Alam (2020).</p>
+      <div class="proj-meta"><span>University of Chittagong / BFRI</span><span>2020–2022</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-label">Research</div>
+  <h2 class="section-title">Publications &amp; presentations</h2>
+
+  <div class="scholar-bar">
+    <div class="sch-metric">
+      <div class="sch-num">10</div>
+      <div class="sch-lbl">Citations</div>
+    </div>
+    <div class="sch-div"></div>
+    <div class="sch-metric">
+      <div class="sch-num">9</div>
+      <div class="sch-lbl">Publications</div>
+    </div>
+    <div class="sch-div"></div>
+    <div class="sch-metric">
+      <div class="sch-num">9,162</div>
+      <div class="sch-lbl">Reads (ResearchGate)</div>
+    </div>
+    <a class="sch-link" href="https://scholar.google.com/citations?user=4hY_09IAAAAJ&hl=en" target="_blank">View Google Scholar →</a>
+  </div>
+
+  <div class="pub-group">
+    <div class="pub-group-title">Conference Papers</div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Peer-Reviewed</span>E-waste Management in Bangladesh: an overview</div>
+      <div class="pub-authors">Raha, U.L.</div>
+      <div class="pub-venue">International Conference on Urban and Regional Planning, Oct. 31–Nov. 6, 2021 · ISBN: 978-984-35-2613-7, pp. 167–176</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Abstract-Reviewed</span>Electricity consumption and sense of 'environment' in everyday practice: a cross-sectional study in Bangladesh</div>
+      <div class="pub-authors">Muna, M.K., Raha, U.L. &amp; Paul, A.</div>
+      <div class="pub-venue">1st International Conference of Physical Sciences 2022, Oct. 21–23 · Abstract ID: GEE-OP-02, pp. 120</div>
+    </div>
+  </div>
+
+  <div class="pub-group">
+    <div class="pub-group-title">Poster Presentations</div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Poster</span>Tree Planting Suitability in Tempe, Arizona</div>
+      <div class="pub-authors">Mandasari, V. &amp; Raha, U.L.</div>
+      <div class="pub-venue">ASU Urban Climate Research Center (UCRC) · 2026 · Arizona State University</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Poster</span>Health Hazards Among E-waste Recyclers in Chattogram City, Bangladesh: A Cross-Sectional Analysis of Workplace Safety and Chronic Conditions</div>
+      <div class="pub-authors">Muna, M.K., Shahariar, M., Raha, U.L. &amp; Paul, A.</div>
+      <div class="pub-venue">ResearchGate · February 2025</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Poster</span>Challenges and mismanagement in flood prevention and mitigation plans in Bangladesh: A review</div>
+      <div class="pub-authors">Raha, U.L.</div>
+      <div class="pub-venue">International Conference on Environmental Protection for Sustainable Development (ICEPSD) · September 2022</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Poster</span>Impact of meteorological parameters on COVID-19 transmission in Bangladesh: a systematic review</div>
+      <div class="pub-authors">Raha, U.L.</div>
+      <div class="pub-venue">1st Jamal Nazrul Islam National Conference · May 2022</div>
+    </div>
+  </div>
+
+  <div class="pub-group">
+    <div class="pub-group-title">Presentations &amp; StoryMaps</div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Presentation</span>GIS in Hospital and Healthcare Emergency Management</div>
+      <div class="pub-authors">Raha, U.L.</div>
+      <div class="pub-venue">29th Annual GIS in Action · April 2021</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">StoryMap</span>Urban Expansion in Phoenix: Tracking Development and Flood Risk Areas (2013–2019)</div>
+      <div class="pub-authors">Raha, U.L.</div>
+      <div class="pub-venue">GIS Workshop for Planners, ASU · Spring 2025</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-title"><span class="pub-type-badge">Presentation</span>Smart City — Mobility Initiatives and Future Transportation</div>
+      <div class="pub-authors">Raha, U.L. et al.</div>
+      <div class="pub-venue">Zhejiang University SDG Global Summer School · August 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- HONORS -->
+<section id="honors">
+  <div class="section-label">Recognition</div>
+  <h2 class="section-title">Honors &amp; awards</h2>
+  <div class="honors-grid">
+    <div class="honor-card">
+      <div class="honor-year">May 2025</div>
+      <div class="honor-title">Brian &amp; Leah Swanton Urban Planning Scholarship</div>
+      <div class="honor-org">ASU SGSUP · For addressing housing and distressed communities</div>
+    </div>
+    <div class="honor-card">
+      <div class="honor-year">Apr–Aug 2023</div>
+      <div class="honor-title">UPG Sustainability Leader</div>
+      <div class="honor-org">United People Global · Led "E-cycle from Home" (SDG 11 &amp; 3)</div>
+    </div>
+    <div class="honor-card">
+      <div class="honor-year">Dec 2022</div>
+      <div class="honor-title">Millennium Fellowship</div>
+      <div class="honor-org">United Nations Academic Impact &amp; MCN · Led four-person team on "E-cycle from Home"</div>
+    </div>
+    <div class="honor-card">
+      <div class="honor-year">Aug 2022</div>
+      <div class="honor-title">Funded Summer School — Zhejiang University</div>
+      <div class="honor-org">SDG Global Summer School · 3-credit Smart City course; co-presented on Mobility &amp; Future Transportation</div>
+    </div>
+    <div class="honor-card">
+      <div class="honor-year">2021</div>
+      <div class="honor-title">Research Traineeship (RTX)</div>
+      <div class="honor-org">Jackson School of Geoscience, University of Texas at Austin</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div>
+    <div class="section-label">Get in touch</div>
+    <h2 class="contact-title">Open to planning opportunities worldwide.</h2>
+    <p class="contact-sub">Seeking full-time planning roles at municipal agencies, regional bodies, international organizations, or mission-driven consultancies — open to opportunities globally. Feel free to reach out directly.</p>
+    <a href="Raha_UmmeLaiba_Resume_2026.pdf" class="resume-btn" target="_blank">↓ Download Resume</a>
+  </div>
+  <div class="contact-links">
+    <a href="/cdn-cgi/l/email-protection#b9cccbd8d1d8f9d8cacc97dcddcc" class="contact-link">
+      <span class="contact-icon">✉</span><span class="__cf_email__" data-cfemail="b2c7c0d3dad3f2d3c1c79cd7d6c7">[email&#160;protected]</span>
+    </a>
+    <a href="https://search.asu.edu/profile/5062919" class="contact-link" target="_blank">
+      <span class="contact-icon">A</span>ASU Profile
+    </a>
+    <a href="https://scholar.google.com/citations?user=4hY_09IAAAAJ&hl=en" class="contact-link" target="_blank">
+      <span class="contact-icon">G</span>Google Scholar · Cited by 10
+    </a>
+    <a href="https://www.researchgate.net/profile/Umme-Laiba-Raha" class="contact-link" target="_blank">
+      <span class="contact-icon">R</span>ResearchGate · 9,162 reads
+    </a>
+    <a href="https://sites.google.com/view/umme-laiba-raha/about-myself" class="contact-link" target="_blank">
+      <span class="contact-icon">↗</span>Previous Portfolio (Google Sites)
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Umme Laiba Raha 
